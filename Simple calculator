@@ -1,0 +1,101 @@
+ // Addition
+ static double Add(double firstInput, double secondInput)
+ {
+     return firstInput + secondInput;
+ }
+
+ // Subtraction
+ static double Subtract(double firstInput, double secondInput)
+ {
+     return firstInput - secondInput;
+ }
+
+ // Multiplication
+ static double Multiply(double firstInput, double secondInput)
+ {
+     return firstInput * secondInput;
+ }
+
+ // Division
+ static double Divide(double firstInput, double secondInput)
+ {
+     if (secondInput == 0)
+         throw new DivideByZeroException("Cannot divide by zero.");
+     return firstInput / secondInput;
+ }
+
+ // Power
+ static double Power(double firstInput, double secondInput)
+ {
+     return Math.Pow(firstInput, secondInput);
+ }
+
+ // Get a valid number from user
+ static double GetNumber(string prompt)
+ {
+     double number;
+     while (true)
+     {
+         Console.Write(prompt);
+         if (double.TryParse(Console.ReadLine(), out number))
+         {
+             return number;
+         }
+         else
+         {
+             Console.WriteLine("Please enter a valid number (e.g. 3.5 or 7).");
+         }
+     }
+ }
+
+ // Main method - entry point
+ static void Main()
+ {
+     Console.WriteLine("Calculator Beta 1");
+     Console.WriteLine("Operations: +  -  *  /  ^  %");
+
+     while (true)
+     {
+         Console.Write("Choose operation (+, -, *, /, ^, %, q to quit): ");
+         string op = Console.ReadLine().Trim().ToLower();
+
+         if (op == "q" || op == "quit" || op == "exit")
+         {
+             Console.WriteLine("Goodbye!");
+             break;
+         }
+
+         if (op != "+" && op != "-" && op != "*" && op != "/" && op != "^" && op != "%")
+         {
+             Console.WriteLine("Unknown operation. Try again.");
+             continue;
+         }
+
+         double firstInput = GetNumber("Enter first number: ");
+         double secondInput = GetNumber("Enter second number: ");
+
+         try
+         {
+             double res = 0;
+
+             if (op == "+")
+                 res = Add(firstInput, secondInput);
+             else if (op == "-")
+                 res = Subtract(firstInput, secondInput);
+             else if (op == "*")
+                 res = Multiply(firstInput, secondInput);
+             else if (op == "/")
+                 res = Divide(firstInput, secondInput);
+             else if (op == "^")
+                 res = Power(firstInput, secondInput);
+             else if (op == "%")
+                 res = firstInput % secondInput;
+
+             Console.WriteLine("Result: " + res);
+         }
+         catch (Exception e)
+         {
+             Console.WriteLine("Error: " + e.Message);
+         }
+     }
+ }
