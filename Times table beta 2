@@ -1,0 +1,30 @@
+ static void Main()
+ {
+     Console.WriteLine("Times Table Generator");
+
+     while (true)
+     {
+         // Ask the user for the number
+         Console.Write("Enter a number for the times table: ");
+         int num = int.Parse(Console.ReadLine());
+
+         // Ask the user how far they want it to go
+         Console.Write("Enter how far you want the table to go: ");
+         int limit = int.Parse(Console.ReadLine());
+
+         // Print the times table
+         for (int i = 1; i <= limit; i++)
+         {
+             Console.WriteLine(num + " x " + i + " = " + (num * i));
+         }
+
+         // Ask if they want another
+         Console.Write("Do you want another one? (y/n): ");
+         string again = Console.ReadLine().ToLower();
+         if (again != "y")
+         {
+             Console.WriteLine("Goodbye!");
+             break;
+         }
+     }
+ }
